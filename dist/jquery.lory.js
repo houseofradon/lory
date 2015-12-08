@@ -100,6 +100,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
+
 	var slice = Array.prototype.slice;
 
 	function lory(slider, opts) {
@@ -367,7 +369,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * Only fire resize event on true resize
 	         * ISO sometimes fires resize on scroll
 	         **/
-	        var resizeEvent = !window.orientation ? 'resize' : 'orientationchange';
+	        var resizeEvent = _typeof(window.orientation) === undefined ? 'resize' : 'orientationchange';
 	        options.window.addEventListener(resizeEvent, onResize);
 
 	        dispatchSliderEvent('after', 'init');

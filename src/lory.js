@@ -272,7 +272,7 @@ export function lory (slider, opts) {
          * Only fire resize event on true resize
          * ISO sometimes fires resize on scroll
          **/
-        const resizeEvent = (!window.orientation) ? 'resize' : 'orientationchange';
+        const resizeEvent = typeof window.orientation === undefined ? 'resize' : 'orientationchange';
         options.window.addEventListener(resizeEvent, onResize);
 
         dispatchSliderEvent('after', 'init');
