@@ -39,13 +39,13 @@ export function lory (slider, opts) {
     function setActiveElement (slides, currentIndex) {
         const {classNameActiveSlide} = options;
 
-        slides.forEach((element, index) => {
-            if (element.classList.contains(classNameActiveSlide)) {
-                element.classList.remove(classNameActiveSlide);
+        slides.forEach(function (element, index) {
+            if (element.className.indexOf(classNameActiveSlide) !== -1) {
+                element.className = element.className.replace(' ' + classNameActiveSlide, '');
             }
         });
 
-        slides[currentIndex].classList.add(classNameActiveSlide);
+        slides[currentIndex].className += ' ' + classNameActiveSlide;
     }
 
     /**
@@ -272,7 +272,7 @@ export function lory (slider, opts) {
          * Only fire resize event on true resize
          * ISO sometimes fires resize on scroll
          **/
-        const resizeEvent = typeof window.orientation === undefined ? 'resize' : 'orientationchange';
+        const resizeEvent = typeof window.orientation === 'undefined' ? 'resize' : 'orientationchange';
         options.window.addEventListener(resizeEvent, onResize);
 
         dispatchSliderEvent('after', 'init');

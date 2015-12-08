@@ -100,8 +100,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
-
 	var slice = Array.prototype.slice;
 
 	function lory(slider, opts) {
@@ -139,12 +137,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var classNameActiveSlide = _options.classNameActiveSlide;
 
 	        slides.forEach(function (element, index) {
-	            if (element.classList.contains(classNameActiveSlide)) {
-	                element.classList.remove(classNameActiveSlide);
+	            if (element.className.indexOf(classNameActiveSlide) !== -1) {
+	                element.className = element.className.replace(' ' + classNameActiveSlide, '');
 	            }
 	        });
 
-	        slides[currentIndex].classList.add(classNameActiveSlide);
+	        slides[currentIndex].className += ' ' + classNameActiveSlide;
 	    }
 
 	    /**
@@ -369,7 +367,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * Only fire resize event on true resize
 	         * ISO sometimes fires resize on scroll
 	         **/
-	        var resizeEvent = _typeof(window.orientation) === undefined ? 'resize' : 'orientationchange';
+	        var resizeEvent = typeof window.orientation === 'undefined' ? 'resize' : 'orientationchange';
 	        options.window.addEventListener(resizeEvent, onResize);
 
 	        dispatchSliderEvent('after', 'init');
