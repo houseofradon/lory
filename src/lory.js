@@ -74,7 +74,6 @@ export function lory (slider, opts) {
 
                 slideContainer.insertBefore(cloned, slideContainer.firstChild);
             });
-
         slideContainer.addEventListener(prefixes.transitionEnd, onTransitionEnd);
 
         return slice.call(slideContainer.children);
@@ -274,6 +273,10 @@ export function lory (slider, opts) {
          **/
         const resizeEvent = typeof window.orientation === 'undefined' ? 'resize' : 'orientationchange';
         options.window.addEventListener(resizeEvent, onResize);
+
+        slideContainer.addEventListener(prefixes.transitionEnd, function () {
+            dispatchSliderEvent('after', 'transition');
+        });
 
         dispatchSliderEvent('after', 'init');
     }
